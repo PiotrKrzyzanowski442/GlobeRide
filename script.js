@@ -159,3 +159,16 @@ function symulujGeoKodowanieIMarker(latLng, type) {
 }
 // ... (Wszystkie pozostałe funkcje muszą być skopiowane z poprzedniego kroku!) ...
 // (Logika autoryzacji, portfela, planowania trasy itd. od updateAuthUI do końca)
+// --- Wszystkie definicje stałych i zmiennych (DATA, KURS_EUR_PLN, itd.) ---
+// ... (CAŁY DŁUGI KOD ZAWARTY W POPRZEDNIM KROKU MUSI ZOSTAĆ SKOPIOWANY TUTAJ) ...
+
+// UWAGA: PROSZĘ Wkleić całą definicję DATA, LOGIKĘ FINANSOWĄ,
+// i wszystkie funkcje (updateAuthUI, initMap, handleLogin, itd.)
+// Z POPRZEDNIEGO KROKU.
+
+// JEDYNA ZMIANA W TYM PLIKU (MUSI ZNAJDOWAĆ SIĘ NA SAMYM KOŃCU PLIKU):
+// Zapewnienie, że aplikacja uruchomi się po załadowaniu całego kodu JS.
+document.addEventListener('DOMContentLoaded', initApp); 
+// Lub prościej: 
+// initApp(); // Jeśli umieścimy ten wiersz na samym końcu pliku.
+
