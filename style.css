@@ -204,4 +204,20 @@ body {
 .validation-screen.valid { background-color: #4CAF50; color: white; }
 .validation-screen.invalid { background-color: #f44336; color: white; }
 .validation-screen button { margin-top: 30px; padding: 15px 30px; font-size: 0.5em; background: white; color: #333; border: none; border-radius: 8px; cursor: pointer; }
+
 .stop-marker { background-color: #3f51b5; width: 10px; height: 10px; border-radius: 50%; border: 2px solid white; cursor: pointer; }
+/* --- WŁAŚCIWE STYLE IKON LEAFLET (KRYTYCZNE) --- */
+.leaflet-container {
+    background: #dddddd; /* Ustawia szare tło, jeśli kafelki się nie załadują */
+}
+.leaflet-control-attribution {
+    font-size: 0.7em !important;
+}
+.leaflet-pane {
+    z-index: 400; /* Upewniamy się, że warstwa mapy jest pod wszystkim */
+}
+/* Style dla ikon markera (niezbędne, by ikona pinezki się wyświetliła) */
+.leaflet-marker-icon {
+    background-image: url('data:image/png;base64,...'); /* Symboliczna zawartość */
+    /* Te style zazwyczaj pochodzą z Leaflet.css, ale czasem przeglądarka je blokuje. */
+}
