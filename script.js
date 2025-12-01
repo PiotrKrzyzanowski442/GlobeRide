@@ -171,4 +171,14 @@ function symulujGeoKodowanieIMarker(latLng, type) {
 document.addEventListener('DOMContentLoaded', initApp); 
 // Lub prościej: 
 // initApp(); // Jeśli umieścimy ten wiersz na samym końcu pliku.
+// --- PRZYKŁAD KOREKTY JS (Wklej to na sam koniec pliku script.js) ---
+
+// UWAGA: USUŃ TĘ LINIĘ, JEŚLI KORZYSTASZ Z PEŁNEGO KODU Z POPRZEDNIEGO KROKU!
+
+// Zapewnienie, że aplikacja uruchomi się po załadowaniu całego pliku JS
+if (typeof initApp === 'function') {
+    initApp();
+}
+// Jeśli wkleił Pan cały kod JS z poprzedniego kroku, proszę zostawić to puste lub dodać powyższy if.
+
 
