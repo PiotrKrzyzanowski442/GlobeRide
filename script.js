@@ -49,14 +49,51 @@ const authButton = document.getElementById('authButton');
 const setPointButton = document.getElementById('setPointButton');
 
 
-// --- FUNKCJE INICJALIZACYJNE I MAPY (WZMACNIANIE) ---
+// --- FUNKCJE INICJALIZACYJNE I MAPY (Wzmocnione) ---
 
 function initApp() {
     updateAuthUI();
-    // Odroczone ładowanie mapy, aby dać Leaflet czas na inicjalizację
-    setTimeout(initMap, 100); 
+    
+    // Dodajemy mały timeout, aby dać Leaflet czas na wpięcie CSS
+    setTimeout(() => {
+        initMap();
+        changeCity("Rzym");
+    }, 50); 
 }
 
+// PRZEPISANE: WZMOCNIONA INICJALIZACJA LEAFLET
+function initMap() {
+    try {
+        const mapElement = document.getElementById('map');
+        if (!mapElement) {
+            console.error("Błąd: Element #map nie istnieje w DOM.");
+            setTimeout(initMap, 500);
+            return;
+        }
+
+        if (map !== null) map.remove(); 
+
+        map = L.map('map').setView([0, 0], 2); 
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Ponowne włączenie nasłuchiwania na kliknięcie mapy po inicjalizacji
+        map.on('click', handleMapClick); 
+
+        updateOutput(`Mapa ${currentCity} załadowana pomyślnie! Kliknij w przycisk 'Ustaw Punkty' i zacznij klikać na mapie!`);
+        
+    } catch (e) { 
+        console.error("KRYTYCZNY BŁĄD INICJALIZACJI MAPY (JS):", e);
+        outputElement.innerHTML = `❌ BŁĄD KRYTYCZNY MAPY: ${e.message}. Proszę o sprawdzenie konsoli (F12).`;
+    }
+}
+
+// ... (Wszystkie pozostałe funkcje z poprzedniego kroku muszą być skopiowane) ...
+
+// Na końcu pliku, dla automatycznego uruchomienia:
+document.addEventListener('DOMContentLoaded', initApp);
 // PRZEPISANE: WZMOCNIONA INICJALIZACJA LEAFLET
 function initMap() {
     try {
@@ -180,5 +217,6 @@ if (typeof initApp === 'function') {
     initApp();
 }
 // Jeśli wkleił Pan cały kod JS z poprzedniego kroku, proszę zostawić to puste lub dodać powyższy if.
+
 
 
