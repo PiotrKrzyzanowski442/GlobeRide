@@ -1,0 +1,207 @@
+/* Globale style i responsywność */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f9;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.app-container {
+    width: 100%;
+    max-width: 480px; 
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Responsywność: Jeśli okno jest większe, centrumjemy aplikację */
+@media (min-width: 600px) {
+    .app-container {
+        margin: 50px 0;
+        border-radius: 15px;
+    }
+}
+
+/* Sekcja Nagłówka */
+.header {
+    background-color: #3f51b5;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    padding-top: 50px; /* Zwiększamy górny padding, aby zmieścić przyciski */
+}
+.header h1 {
+    margin: 0;
+    font-size: 1.4em;
+}
+
+/* NAPRAWIONE: PRZYCISKI ZNAJDUJĄ SIĘ PO PRZECIWNYCH STRONACH */
+#walletInfo {
+    position: absolute;
+    top: 15px; 
+    right: 15px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #ffeb3b; 
+    cursor: pointer;
+}
+.btn-auth {
+    position: absolute;
+    top: 15px;
+    left: 15px; /* Przeniesione na lewą stronę */
+    padding: 5px 10px;
+    border: 1px solid white;
+    background: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-auth:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Sekcja Mapy */
+#map-container {
+    height: 350px;
+    width: 100%;
+    border-bottom: 2px solid #ccc;
+}
+#map {
+    width: 100%;
+    height: 100%;
+}
+.map-clickable {
+    cursor: crosshair !important; 
+}
+.content {
+    padding: 15px;
+}
+
+/* Pola Wprowadzania */
+.search-row {
+    display: flex;
+    margin-bottom: 8px;
+    position: relative; 
+}
+.search-inputs input {
+    flex-grow: 1;
+    padding: 10px;
+    margin-right: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+.btn-gps {
+    width: 40px;
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.city-select-group select, .transport-select select {
+    flex-grow: 1;
+    padding: 10px;
+    margin-right: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+/* Przyciski */
+.button-group button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 8px;
+    border: none;
+    border-radius: 6px;
+    background-color: #00bcd4;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.button-group button:nth-last-child(2) {
+    background-color: #9c27b0; /* Fioletowy dla kontrolera */
+}
+#setPointButton.active {
+    background-color: #ff9800; /* Pomarańczowy dla aktywnego trybu wyboru */
+}
+
+/* Panel Wyników i Opcji Trasy */
+#output {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #e3f2fd;
+    border: 1px solid #bbdefb;
+    border-radius: 8px;
+    min-height: 100px;
+    white-space: pre-wrap;
+    font-size: 0.9em;
+}
+
+/* --- STYLE MODALNEGO OKNA LOGOWANIA --- */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1001; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); 
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+.modal-content h2 {
+    color: #3f51b5;
+    margin-bottom: 20px;
+}
+.modal-content input {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.modal-content button {
+    width: 45%;
+    padding: 10px;
+    margin: 10px 2.5%;
+    border: none;
+    border-radius: 5px;
+    background-color: #00bcd4;
+    color: white;
+    cursor: pointer;
+}
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-button:hover, .close-button:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Reszta stylów */
+.route-option { border: 1px solid #ddd; padding: 10px; margin-bottom: 5px; border-radius: 4px; cursor: pointer; transition: background-color 0.2s; }
+.route-header { font-weight: bold; color: #3f51b5; }
+.real-time-delay { color: red; font-weight: bold; }
+.validation-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 3em; font-weight: bold; z-index: 1000; }
+.validation-screen.valid { background-color: #4CAF50; color: white; }
+.validation-screen.invalid { background-color: #f44336; color: white; }
+.validation-screen button { margin-top: 30px; padding: 15px 30px; font-size: 0.5em; background: white; color: #333; border: none; border-radius: 8px; cursor: pointer; }
+.stop-marker { background-color: #3f51b5; width: 10px; height: 10px; border-radius: 50%; border: 2px solid white; cursor: pointer; }

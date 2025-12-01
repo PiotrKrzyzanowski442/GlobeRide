@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 GlobeRide - V9 (Logowanie i Mapa)</title>
+    
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="initApp()">
+
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeLoginModal()">&times;</span>
+        <h2>Panel Autoryzacji GlobeRide</h2>
+        <input type="email" id="loginEmail" placeholder="E-mail" required>
+        <input type="password" id="loginPassword" placeholder="Hasło" required>
+        <button onclick="handleLogin('login')">Zaloguj</button>
+        <button onclick="handleLogin('register')">Zarejestruj</button>
+        <p style="margin-top: 10px; font-size: 0.8em;">(To jest symulacja - wystarczy wpisać cokolwiek.)</p>
+    </div>
+</div>
+
+<div class="app-container">
+    <div class="header">
+        <h1 id="headerTitle">🌍 GlobeRide: Rzym (ATAC)</h1>
+        <button id="authButton" class="btn-auth" onclick="showLoginModal()">Zaloguj się</button>
+        <span id="walletInfo" onclick="addFunds()">Saldo: 0.00 PLN</span>
+        <p>Dynamiczny Planer i Bilety</p>
+    </div>
+
+    <div class="content city-select-group">
+        <select id="citySelect" onchange="changeCity(this.value)">
+            <option value="Rzym">🇮🇹 Rzym (ATAC)</option>
+            <option value="Berlin">🇩🇪 Berlin (BVG)</option>
+            <option value="Praga">🇨🇿 Praga (DPP)</option>
+        </select>
+    </div>
+
+    <div id="map-container">
+        <div id="map" class="map-clickable"></div>
+    </div>
+    
+    <div class="content">
+
+        <div class="search-inputs">
+            <div class="search-row">
+                <input type="text" id="inputSkad" placeholder="Skąd (Kliknij na mapę!)" oninput="autocomplete(this.value, 'inputSkad')" autocomplete="off">
+                <button class="btn-gps" onclick="setMyCurrentLocation('inputSkad')">📍</button>
+            </div>
+            <div class="search-row">
+                <input type="text" id="inputDokad" placeholder="Dokąd (Kliknij na mapę!)" oninput="autocomplete(this.value, 'inputDokad')" autocomplete="off">
+                <button class="btn-gps" onclick="setMyCurrentLocation('inputDokad')">📍</button>
+            </div>
+        </div>
+        
+        <div class="transport-select">
+             <select id="transportType">
+                <option value="all">Wszystkie środki transportu</option>
+                <option value="metro">Tylko Metro</option>
+                <option value="bus">Tylko Autobusy</option>
+                <option value="tram">Tylko Tramwaje</option>
+                <option value="train">Tylko Pociągi/S-Bahn</option>
+             </select>
+        </div>
+        
+        <div class="button-group">
+            <button id="setPointButton" onclick="toggleMapPointSelection()">1. Ustaw Punkty (Kliknij Mapę)</button>
+            <button onclick="planujTraseClick()">2. Zaplanuj Trasę</button>
+            <button onclick="pokazOpcjeBiletowe()">3. Kup Bilet</button>
+            <button onclick="pokazPortfel()">4. Pokaż Portfel / Walidacja</button>
+            <button onclick="showValidationPanel()">5. Panel Kontrolera</button>
+        </div>
+
+        <div id="routeOptionsPanel"></div>
+
+        <div id="output">Proszę czekać, ładowanie aplikacji...</div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
