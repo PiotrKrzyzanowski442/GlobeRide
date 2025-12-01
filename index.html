@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌍 GlobeRide - V9 (Logowanie i Mapa)</title>
+    <title>🌍 GlobeRide - Leaflet Map (v10)</title>
     
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAo9T0jYI7TfX6FfL6/t0w3qE2/v4g0/N/r0G1uM="
+        crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-2R5f6h3qP82D0X4z0Xf4tqJ7c2I5I9f4oE1/Y1B4oE4="
+        crossorigin=""></script>
     
     <link rel="manifest" href="manifest.json">
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="initApp()">
@@ -70,7 +73,7 @@
         </div>
         
         <div class="button-group">
-            <button id="setPointButton" onclick="toggleMapPointSelection()">1. Ustaw Punkty (Kliknij Mapę)</button>
+            <button id="setPointButton" onclick="toggleMapPointSelection()">1. Ustaw Punkty (Tryb Wyłączony)</button>
             <button onclick="planujTraseClick()">2. Zaplanuj Trasę</button>
             <button onclick="pokazOpcjeBiletowe()">3. Kup Bilet</button>
             <button onclick="pokazPortfel()">4. Pokaż Portfel / Walidacja</button>
