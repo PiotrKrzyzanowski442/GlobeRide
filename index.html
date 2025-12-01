@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌍 GlobeRide - V10 (Naprawione Błędy Krytyczne)</title>
+    <title>🌍 GlobeRide - Stabilna Wersja Mapbox</title>
     
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet">
     
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-<div id="loginModal" class="modal">
+<body onload="initApp()"> <div id="loginModal" class="modal">
     <div class="modal-content">
         <span class="close-button" onclick="closeLoginModal()">&times;</span>
         <h2>Panel Autoryzacji GlobeRide</h2>
@@ -42,7 +40,7 @@
     </div>
 
     <div id="map-container">
-        <div id="map" class="map-clickable"></div>
+        <div id="map"></div>
     </div>
     
     <div class="content">
