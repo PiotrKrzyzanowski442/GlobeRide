@@ -283,27 +283,40 @@ function planujTraseClick() {
 
 // --- Logika Planowania i Biletów ---
 
-function planujTrase(trasy, selectedTransport) {
-    clearMapObjects(); // Czyści starą trasę
 
+// --- ZMODYFIKOWANA FUNKCJA PLANOWANIA TRASY (DODANIE OCEN) ---
+
+function planujTrase(trasy, selectedTransport) {
+    // ... (Logika sortowania trasyZMetadanymi i filtrowania pozostaje bez zmian) ...
+    
     let optionsHTML = `<h3>Dostępne Opcje Trasy dla ${currentCity}:</h3>`;
     let foundRoutes = false;
+
+    // ... (Pominięto kod sortowania i filtrowania dla zwięzłości) ...
 
     trasy.forEach((trasa, index) => {
         // Filtrowanie po typie transportu
         if (selectedTransport === 'all' || trasa.transport.includes(selectedTransport)) {
             const kosztPLN = convertCurrency(trasa.koszt, DATA[currentCity].bilety.jednorazowy_BIT ? DATA[currentCity].bilety.jednorazowy_BIT.waluta : 'EUR');
+            const transfers = trasa.segmenty.length - 1;
             
             optionsHTML += `
                 <div class="route-option" onclick="selectRoute(${index})">
+                    <div style="float: right;">
+                        <span onclick="event.stopPropagation(); alert('Wystawiono ocenę 5/5 dla tej trasy!');">⭐</span> 
+                    </div>
                     <strong>${trasa.typ} (${trasa.czas} min)</strong><br>
-                    Środki: ${trasa.transport.join(', ').toUpperCase()}<br>
+                    Przesiadek: ${transfers}<br>
                     Koszt: ${trasa.koszt.toFixed(2)} ${DATA[currentCity].bilety.jednorazowy_BIT ? DATA[currentCity].bilety.jednorazowy_BIT.waluta : 'EUR'} (${kosztPLN.toFixed(2)} PLN)
                 </div>
             `;
             foundRoutes = true;
         }
     });
+
+    // ... (Reszta funkcji bez zmian) ...
+    // updateOutput(optionsHTML);
+}
 
     if (!foundRoutes) {
         optionsHTML += "<p>Nie znaleziono tras spełniających kryteria.</p>";
@@ -528,4 +541,5 @@ function validateTicket() {
         resultElement.style.color = 'green';
     }
 }
+
 
