@@ -45,16 +45,23 @@
     
     <div class="content">
 
-        <div class="search-inputs">
-            <div class="search-row">
-                <input type="text" id="inputSkad" placeholder="Skąd (Kliknij na mapę!)" oninput="autocomplete(this.value, 'inputSkad')" autocomplete="off">
-                <button class="btn-gps" onclick="setMyCurrentLocation('inputSkad')">📍</button>
-            </div>
-            <div class="search-row">
-                <input type="text" id="inputDokad" placeholder="Dokąd (Kliknij na mapę!)" oninput="autocomplete(this.value, 'inputDokad')" autocomplete="off">
-                <button class="btn-gps" onclick="setMyCurrentLocation('inputDokad')">📍</button>
-            </div>
-        </div>
+      <div class="search-inputs">
+    <div class="search-row">
+        <input type="text" id="inputSkad" placeholder="Skąd (Kliknij na mapę!)" oninput="autocomplete(this.value, 'inputSkad')" autocomplete="off">
+        <button class="btn-gps" onclick="setMyCurrentLocation('inputSkad')">📍</button>
+        <select id="favoriteFrom" onchange="document.getElementById('inputSkad').value = this.value; this.selectedIndex = 0;">
+            <option value="">⭐ Ulubione</option>
+        </select>
+    </div>
+    <div class="search-row">
+        <input type="text" id="inputDokad" placeholder="Dokąd (Kliknij na mapę!)" oninput="autocomplete(this.value, 'inputDokad')" autocomplete="off">
+        <button class="btn-gps" onclick="setMyCurrentLocation('inputDokad')">📍</button>
+        <select id="favoriteTo" onchange="document.getElementById('inputDokad').value = this.value; this.selectedIndex = 0;">
+            <option value="">⭐ Ulubione</option>
+        </select>
+    </div>
+    <button onclick="addToFavorites()" style="background-color: #f57c00; color: white; width: 100%; margin-bottom: 10px;">❤️ Dodaj do Ulubionych</button>
+</div>
         
         <div class="transport-select">
              <select id="transportType">
@@ -84,3 +91,4 @@
 
 </body>
 </html>
+
