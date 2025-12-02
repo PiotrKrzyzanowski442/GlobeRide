@@ -313,19 +313,53 @@ function planujTrase(trasy, selectedTransport) {
     updateOutput(`Znaleziono ${foundRoutes ? trasy.length : 0} opcji. Kliknij, aby zobaczyć szczegóły na mapie.`);
 }
 
+// --- ULEPSZONA FUNKCJA WYŚWIETLANIA DETALI TRASY ---
+
 function selectRoute(index) {
     const trasa = DATA[currentCity].trasy[index];
-    clearMapObjects();
+    
+    // Używamy symboli dla typów transportu
+    const iconMap = {
+        'bus': '🚍 Autobus',
+        'metro': '🚇 Metro',
+        'tram': '🚋 Tramwaj',
+        'train': '🚂 Pociąg'
+    };
+    
+    let detale = `<h3>Trasa: ${trasa.typ} (${trasa.czas} min)</h3>\n`;
+    detale += `<div style="text-align: left; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">`;
+    
+    detale += `<strong>🚶 START: Twoja lokalizacja</strong><br>`;
+    
+    trasa.segmenty.forEach((segment, segmentIndex) => {
+        const icon = iconMap[segment.typ] || '➡️';
+        const opoznienie = segment.delay > 0 ? ` <span style="color: red; font-weight: bold;">(+${segment.delay} min)</span>` : '';
+        const isLast = segmentIndex === trasa.segmenty.length - 1;
+        
+        // Krok: Środek transportu
+        detale += `<hr style="border-top: 1px dashed #bbb;">`;
+        detale += `${icon} <strong>Linia ${segment.linia}</strong>${opoznienie}<br>`;
+        detale += `&nbsp; &nbsp; ↳ Kierunek: ${segment.przesiadka || 'CEL'}<br>`;
 
-    // Dodaj markery dla POI trasy
-    const startPOI = Object.values(DATA[currentCity].poi)[0];
-    const endPOI = Object.values(DATA[currentCity].poi)[1];
-    symulujGeoKodowanieIMarker(startPOI, 'start', 'START');
-    symulujGeoKodowanieIMarker(endPOI, 'end', 'CEL');
+        // Krok: Przesiadka / Cel
+        if (!isLast) {
+            detale += `&nbsp; &nbsp; 🔄 **Przesiądź się** na: ${segment.przesiadka}<br>`;
+        } else {
+            detale += `&nbsp; &nbsp; 🏁 **Wysiądź** na przystanku: ${segment.przesiadka || 'CEL'}`;
+        }
+    });
 
-    narysujTraseSegmentami(trasa.segmenty);
-    updateOutput(`Wybrano trasę: ${trasa.typ}. Szczegóły narysowane na mapie.`);
+    detale += `</div>`;
+    
+    updateOutput(detale);
+    
+    // Jeżeli mapa działa, narysuj trasę (Wymaga aktywnej mapy Mapbox)
+    if (map) { 
+        clearMapObjects(); // Usuń stare markery i linie
+        narysujTraseSegmentami(trasa.segmenty);
+    }
 }
+
 
 function narysujTraseSegmentami(segmenty) {
     segmenty.forEach((segment, index) => {
@@ -494,3 +528,4 @@ function validateTicket() {
         resultElement.style.color = 'green';
     }
 }
+
