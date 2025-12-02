@@ -36,10 +36,6 @@ body {
     margin: 0;
     font-size: 1.4em;
 }
-.header p {
-    margin-top: 5px;
-    font-size: 0.9em;
-}
 
 #walletInfo {
     position: absolute;
@@ -75,16 +71,8 @@ body {
     width: 100%;
     height: 100%;
 }
-/* Style Mapbox (niezbędne dla poprawności) */
-.mapboxgl-marker {
-    cursor: pointer;
-}
-
-
-/* Główna Zawartość i Kontener Przycisków */
 .content {
     padding: 15px;
-    /* Domyślnie z-index powinien być wystarczający */
 }
 
 /* Pola Wprowadzania */
@@ -109,63 +97,36 @@ body {
     cursor: pointer;
 }
 .city-select-group select, .transport-select select {
-    width: 100%; /* Pełna szerokość */
+    width: 100%; 
     padding: 10px;
     margin-bottom: 8px;
     border: 1px solid #ddd;
     border-radius: 6px;
 }
-
-/* Przyciski (Kluczowa sekcja!) */
 .button-group button {
-    width: 100%; /* Pełna szerokość */
+    width: 100%; 
     padding: 12px;
     margin-bottom: 8px;
     border: none;
     border-radius: 6px;
-    background-color: #00bcd4; /* Turkus */
+    background-color: #00bcd4;
     color: white;
     font-size: 1em;
     cursor: pointer;
     transition: background-color 0.3s;
 }
-/* Ustawienia dla fioletowego przycisku */
 .button-group button:nth-child(4), .button-group button:nth-child(5) { 
-    background-color: #9c27b0; /* Fiolet */
+    background-color: #9c27b0;
 }
 #setPointButton.active {
-    background-color: #ff9800; /* Pomarańczowy dla aktywnego trybu */
-}
-.button-group button:hover {
-    opacity: 0.9;
+    background-color: #ff9800;
 }
 
-/* Panel Wyników */
-#output, .route-option {
-    margin-top: 15px;
-    padding: 15px;
-    background-color: #e3f2fd;
-    border: 1px solid #bbdefb;
-    border-radius: 8px;
-    min-height: 50px;
-    white-space: pre-wrap;
-    font-size: 0.9em;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-.route-option:hover {
-    background-color: #c0d8f0;
-}
-.route-option strong {
-    font-size: 1.1em;
-    color: #3f51b5;
-}
-
-/* Style Modalne (Login/Walidacja) */
+/* Style Modalne */
 .modal {
     display: none; 
     position: fixed;
-    z-index: 1000; /* Najwyższy z-index dla modalu */
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
@@ -190,32 +151,10 @@ body {
     margin: 8px 0;
     box-sizing: border-box;
 }
-.modal-content button {
-    background-color: #3f51b5;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 .close-button {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-}
-
-/* Styles for Validation Panel */
-.validation-ticket {
-    padding: 10px;
-    border: 1px solid #3f51b5;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    font-size: 0.9em;
-    background-color: #e8eaf6;
-}
-.validation-info {
-    font-weight: bold;
-    color: green;
-    margin-top: 10px;
 }
