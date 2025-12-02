@@ -63,15 +63,19 @@
     <button onclick="addToFavorites()" style="background-color: #f57c00; color: white; width: 100%; margin-bottom: 10px;">❤️ Dodaj do Ulubionych</button>
 </div>
         
-        <div class="transport-select">
-             <select id="transportType">
-                <option value="all">Wszystkie środki transportu</option>
-                <option value="metro">Tylko Metro</option>
-                <option value="bus">Tylko Autobusy</option>
-                <option value="tram">Tylko Tramwaje</option>
-                <option value="train">Tylko Pociągi/S-Bahn</option>
-             </select>
-        </div>
+       <div class="transport-select">
+     <select id="transportType">
+        <option value="all">Wszystkie środki transportu</option>
+        <option value="metro">Tylko Metro</option>
+        <option value="bus">Tylko Autobusy</option>
+        <option value="tram">Tylko Tramwaje</option>
+        <option value="train">Tylko Pociągi/S-Bahn</option>
+     </select>
+     <select id="transferFilter">
+        <option value="opt">Optymalna (czas)</option>
+        <option value="min">Minimalna liczba przesiadek</option>
+     </select>
+</div>
         
         <div class="button-group">
             <button id="setPointButton" onclick="toggleMapPointSelection()">1. Ustaw Punkty (Tryb Wyłączony)</button>
@@ -91,4 +95,5 @@
 
 </body>
 </html>
+
 
