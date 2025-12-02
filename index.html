@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌍 GlobeRide - Stabilny System Biletowy</title>
+    <title>🌍 GlobeRide - Stabilna Wersja</title>
+    
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css" rel="stylesheet">
     
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
@@ -38,22 +41,21 @@
         </select>
     </div>
 
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
+    
     <div class="content">
 
         <div class="search-inputs">
             <div class="search-row">
-                <input type="text" id="inputSkad" placeholder="Skąd (Wpisz adres)" autocomplete="off">
-                <select id="favoriteFrom" onchange="document.getElementById('inputSkad').value = this.value; this.selectedIndex = 0;">
-                    <option value="">⭐ Ulubione</option>
-                </select>
+                <input type="text" id="inputSkad" placeholder="Skąd (Kliknij na mapę!)" oninput="autocomplete(this.value, 'inputSkad')" autocomplete="off">
+                <button class="btn-gps" onclick="setMyCurrentLocation('inputSkad')">📍</button>
             </div>
             <div class="search-row">
-                <input type="text" id="inputDokad" placeholder="Dokąd (Wpisz adres)" autocomplete="off">
-                <select id="favoriteTo" onchange="document.getElementById('inputDokad').value = this.value; this.selectedIndex = 0;">
-                    <option value="">⭐ Ulubione</option>
-                </select>
+                <input type="text" id="inputDokad" placeholder="Dokąd (Kliknij na mapę!)" oninput="autocomplete(this.value, 'inputDokad')" autocomplete="off">
+                <button class="btn-gps" onclick="setMyCurrentLocation('inputDokad')">📍</button>
             </div>
-            <button onclick="addToFavorites()" style="background-color: #f57c00; color: white; width: 100%; margin-bottom: 10px;">❤️ Dodaj do Ulubionych</button>
         </div>
         
         <div class="transport-select">
@@ -64,17 +66,14 @@
                 <option value="tram">Tylko Tramwaje</option>
                 <option value="train">Tylko Pociągi/S-Bahn</option>
              </select>
-             <select id="transferFilter">
-                <option value="opt">Optymalna (czas)</option>
-                <option value="min">Minimalna liczba przesiadek</option>
-             </select>
         </div>
         
         <div class="button-group">
-            <button onclick="planujTraseClick()">1. Zaplanuj Trasę</button>
-            <button onclick="pokazOpcjeBiletowe()">2. Kup Bilet</button>
-            <button onclick="pokazPortfel()">3. Pokaż Portfel / Walidacja</button>
-            <button onclick="showValidationPanel()">4. Panel Kontrolera</button>
+            <button id="setPointButton" onclick="toggleMapPointSelection()">1. Ustaw Punkty (Tryb Wyłączony)</button>
+            <button onclick="planujTraseClick()">2. Zaplanuj Trasę</button>
+            <button onclick="pokazOpcjeBiletowe()">3. Kup Bilet</button>
+            <button onclick="pokazPortfel()">4. Pokaż Portfel / Walidacja</button>
+            <button onclick="showValidationPanel()">5. Panel Kontrolera</button>
         </div>
 
         <div id="routeOptionsPanel"></div>
